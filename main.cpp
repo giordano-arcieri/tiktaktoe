@@ -112,10 +112,14 @@ bool Board::result(){
     int temp = -1;
     for(int row = 0; row < board.size(); row++){
         for(int i = 0; i < board.size(); i++){
-            if(temp == -1){
+            if(board[row][i] == 0){
+                break;
+            }
+            else if(temp == -1){
                 temp = board[row][i];
             }
             else if(temp != board[row][i]){
+                temp = -1;
                 break;
             }
             else if(i+1 == board.size()){
@@ -126,10 +130,14 @@ bool Board::result(){
 
     for(int col = 0; col < board.size(); col++){
         for(int i = 0; i < board.size(); i++){
-            if(temp == -1){
+            if(board[i][col] == 0){
+                break;
+            }
+            else if(temp == -1){
                 temp = board[i][col];
             }
             else if(temp != board[i][col]){
+                temp = -1;
                 break;
             }
             else if(i+1 == board.size()){
