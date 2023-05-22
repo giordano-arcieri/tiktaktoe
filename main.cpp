@@ -16,6 +16,7 @@ public:
     void print_board();
     Return_Statement_For_Board_Push push(int cell, Player player);
     bool result();
+    void reset();
 };
 
 void welcome_players_to_game();
@@ -66,7 +67,12 @@ int main(){
         cout << "Congrats Player " << result + 1 << "! You have won the game!" << endl;
 
         play_again = ask_to_play_again();
+        board.reset();
+        if(play_again){
+            board.print_board();
+        }
         result = UNKNOWN;
+        
     }
 
     return 0;
@@ -74,7 +80,6 @@ int main(){
 
 Board::Board(){
     board.resize(3, vector<int>(3));
-
 }
 void Board::print_board(){
     for(int i = 0; i < board.size(); i++){
@@ -155,6 +160,9 @@ bool Board::result(){
         return true;
     }
     return false;
+}
+void Board::reset(){
+    fill(board.begin(), board.end(), vector<int>(3));
 }
 void welcome_players_to_game(){
     cout << "Hello! welcome to tik tak toe!" << endl;
