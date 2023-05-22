@@ -137,8 +137,9 @@ bool Board::result(){
             }
         }
     }
-
-    temp == board[1][1];
+    if(board[1][1] != 0){
+        temp = board[1][1];
+    }
     if(temp == board[0][0] && temp == board[2][2]) {
         return true;
     }
