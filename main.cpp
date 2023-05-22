@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+
+
 using namespace std;
 
 enum Player{ PLAYER1,PLAYER2 }; //used to know whos turn it is.
@@ -85,13 +87,15 @@ void Board::print_board(){
     for(int i = 0; i < board.size(); i++){
         for(int j = 0; j < board[i].size(); j++){
             if(board[i][j] == 1){
-                cout << "x ";    
+                cout << "\033[31mx ";   
+                cout << "\033[0m";   
             }
             else if(board[i][j] == 2){
-                cout << "o ";    
+                cout << "\033[32mo ";
+                cout << "\033[0m";    
             }
             else if(board[i][j] == 0){
-                cout << (i*3)+(j+1) << ' ';    
+                cout << (i*3)+(j+1) << ' ';  
             }
             
         }
