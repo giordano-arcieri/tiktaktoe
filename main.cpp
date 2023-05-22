@@ -169,7 +169,9 @@ void Board::reset(){
     fill(board.begin(), board.end(), vector<int>(3));
 }
 void welcome_players_to_game(){
-    cout << "Hello! welcome to tik tak toe!" << endl;
+    cout << "Hello Players! Welcome to tik tak toe!\n";
+    cout << "This is a 2 player game. Select the cell you want to play on by enetring the number displayed on the cell\n";
+    cout << "Get three Xs or Os in a line to win! You can play again after each game.\n" << endl;
 }
 int instruct_player_and_get_their_move(Player player){
     int ans;
