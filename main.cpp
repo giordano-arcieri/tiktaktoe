@@ -3,11 +3,8 @@
 
 using namespace std;
 
-class board{
-    vector<vector<int>> board;
-};
 
 int main(){
-    
+    printf("hellsssso\n");
     return 0;
 }
