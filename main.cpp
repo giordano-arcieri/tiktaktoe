@@ -19,6 +19,7 @@ public:
     Return_Statement_For_Board_Push push(int cell, Player player);
     bool result();
     void reset();
+    bool full();
 };
 
 void welcome_players_to_game();
@@ -51,7 +52,12 @@ int main(){
             if(temp == WON){
                 result = PLAYER1_WINS;
                 break;
+            }   
+            if(board.full()){
+                result = TIE;
+                break;
             }
+            
 
             player = PLAYER2; //ask player for their move. Modify board and print board.
             ans = instruct_player_and_get_their_move(player);
@@ -65,8 +71,16 @@ int main(){
                 result = PLAYER2_WINS;
                 break;
             }
+            if(board.full()){
+                result = TIE;
+                break;
+            }           
         }
-        cout << "Congrats Player " << result + 1 << "! You have won the game!" << endl;
+        if(result != TIE){
+            cout << "\n\nCongrats Player " << result + 1 << "! You have won the game!" << endl;
+        }else{
+            cout << "\n\nThe game end in a tie!" << endl;
+        }   
 
         play_again = ask_to_play_again();
         board.reset();
@@ -168,6 +182,16 @@ bool Board::result(){
 void Board::reset(){
     fill(board.begin(), board.end(), vector<int>(3));
 }
+bool Board::full(){
+    for(int i = 0; i < board.size(); i++){
+        for(int j = 0; j < board[i].size(); j++){
+            if(board[i][j] == 0){
+                return false;
+            }
+        }
+    }
+    return true;
+}
 void welcome_players_to_game(){
     cout << "Hello Players! Welcome to tik tak toe!\n";
     cout << "This is a 2 player game. Select the cell you want to play on by enetring the number displayed on the cell\n";
@@ -177,11 +201,13 @@ int instruct_player_and_get_their_move(Player player){
     int ans;
     cout << "Player " << player+1 << " select the cell you would like by enetring the number of the cell: ";
     cin >> ans;
+    cout << endl;
     return ans;
 }
 bool ask_to_play_again(){
     bool ans;
-    cout << "Would you like to play again?: ";
+    cout << "Would you like to play again? Enter 0 for no and 1 for yes: ";
     cin >> ans;
-    return ans;
+    cout << endl;
+    return (bool)ans;
 }
